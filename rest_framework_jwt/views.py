@@ -12,6 +12,20 @@ class ObtainJSONWebToken(APIView):
     API View that receives a POST with a user's username and password.
 
     Returns a JSON Web Token that can be used for authenticated requests.
+    ---
+        POST:
+
+            parameters:
+                - name: username
+                  description: Username.
+                  type: string
+                  paramType: form
+                  required: false
+                - name: password
+                  description: Password.
+                  type: string
+                  paramType: form
+                  required: false
     """
     throttle_classes = ()
     permission_classes = ()
@@ -34,6 +48,15 @@ class RefreshJSONWebToken(APIView):
 
     If 'orig_iat' field (original issued-at-time) is found, will first check
     if it's within expiration window, then copy it to the new token
+    ---
+    POST:
+
+        parameters:
+            - name: token
+              description: An existing token.
+              type: string
+              paramType: form
+              required: true
     """
     throttle_classes = ()
     permission_classes = ()
